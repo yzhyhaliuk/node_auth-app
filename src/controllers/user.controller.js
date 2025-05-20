@@ -57,8 +57,6 @@ const updateEmail = async (req, res) => {
     return res.status(401).json({ message: 'Invalid password' });
   }
 
-  console.log(user.email);
-
   await sendMail(
     user.email,
     'Email Change Notification',
