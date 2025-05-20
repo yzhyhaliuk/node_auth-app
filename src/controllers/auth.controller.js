@@ -208,6 +208,10 @@ const resetPassword = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
+    if (token !== user.resetToken) {
+      return res.json({ message: 'Invalid reset token' });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     user.password = hashedPassword;
